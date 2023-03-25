@@ -8,3 +8,8 @@ body {
 	padding: 0;
 	overscroll-behavior: none;
 }
+
+:root {
+  --brush-fill: rgba(0,0,0,.1);
+  --brush-stroke: rgba(0,0,0,.5),
+}

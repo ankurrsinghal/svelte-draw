@@ -16,6 +16,15 @@ export interface Data {
   }
 }
 
+export interface Bounds {
+  minX: number
+  minY: number
+  maxX: number
+  maxY: number
+  width: number
+  height: number
+}
+
 export interface Page {
   id: string
   type: "page"
@@ -99,3 +108,5 @@ export type Shape =
   | RayShape
   | LineSegmentShape
   | RectangleShape
+
+export type Point = [number, number];

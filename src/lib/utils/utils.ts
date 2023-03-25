@@ -1,4 +1,4 @@
-import type { Camera, Data } from "../types"
+import type { Camera, Data, Point } from "../types"
 import * as svg from "./svg"
 import * as vec from "./vec"
 
@@ -826,4 +826,25 @@ export async function postJsonToEndpoint(
   )
 
   return await d.json()
+}
+
+export function getBoundsFromPoints(a: number[], b: number[]) {
+  const minX = Math.min(a[0], b[0])
+  const maxX = Math.max(a[0], b[0])
+  const minY = Math.min(a[1], b[1])
+  const maxY = Math.max(a[1], b[1])
+
+  return {
+    minX,
+    maxX,
+    minY,
+    maxY,
+    width: maxX - minX,
+    height: maxY - minY,
+  }
+}
+
+export function getPointerEventInfo(e: PointerEvent) {
+  const { shiftKey, ctrlKey, metaKey, altKey } = e
+  return { point: [e.clientX, e.clientY] as Point, shiftKey, ctrlKey, metaKey, altKey }
 }

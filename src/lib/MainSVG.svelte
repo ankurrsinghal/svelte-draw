@@ -1,4 +1,18 @@
-<svg on:wheel>
+<script lang="ts">
+export let forwardRef: ((ref: SVGSVGElement) => void);
+
+let ref: SVGSVGElement;
+
+$: forwardRef(ref)
+</script>
+
+<svg
+  bind:this={ref}
+  on:wheel
+  on:pointerdown
+  on:pointermove
+  on:pointerup
+>
   <slot />
 </svg>
 
