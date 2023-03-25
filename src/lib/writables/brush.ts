@@ -10,13 +10,13 @@ function createBrushStore() {
 
   let origin: Point | undefined;
 
-  function startBrush(point: ReturnType<typeof getPointerEventInfo>) {
-    origin = point.point;
+  function startBrush(point: ReturnType<typeof getPointerEventInfo>, camera: Camera) {
+    origin = screenToWorld(point.point, camera);
   }
 
-  function updateBrush(point: ReturnType<typeof getPointerEventInfo>) {
+  function updateBrush(point: ReturnType<typeof getPointerEventInfo>, camera: Camera) {
     if (origin) {
-      const bounds = getBoundsFromPoints(origin, point.point);
+      const bounds = getBoundsFromPoints(origin, screenToWorld(point.point, camera));
       set(bounds);
     }
   }

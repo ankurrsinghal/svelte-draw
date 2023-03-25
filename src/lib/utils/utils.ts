@@ -2,8 +2,8 @@ import type { Camera, Data, Point } from "../types"
 import * as svg from "./svg"
 import * as vec from "./vec"
 
-export function screenToWorld(point: number[], camera: Camera) {
-  return vec.add(vec.div(point, camera.zoom), camera.point)
+export function screenToWorld(point: [number, number], camera: Camera) {
+  return vec.sub(vec.div(point, camera.zoom), camera.point) as Point;
 }
 
 // A helper for getting tangents.
@@ -844,7 +844,7 @@ export function getBoundsFromPoints(a: number[], b: number[]) {
   }
 }
 
-export function getPointerEventInfo(e: PointerEvent) {
+export function getPointerEventInfo(e: PointerEvent | WheelEvent) {
   const { shiftKey, ctrlKey, metaKey, altKey } = e
   return { point: [e.clientX, e.clientY] as Point, shiftKey, ctrlKey, metaKey, altKey }
 }

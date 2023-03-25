@@ -15,38 +15,33 @@ function handleWheel(e: WheelEvent) {
   if (e.ctrlKey) {
     cameraStore.actions.zoomCamera({
       delta: e.deltaY,
-      point: [e.pageX, e.pageY],
+      ...getPointerEventInfo(e)
     });
     return
   }
 
   cameraStore.actions.panCamera({
     delta: [e.deltaX, e.deltaY],
-    point: [e.pageX, e.pageY],
+    ...getPointerEventInfo(e)
   });
 }
 
 const handlePointerDown = (e: PointerEvent) => {
   canvasRef.setPointerCapture(e.pointerId)
-  brushStore.actions.startBrush(getPointerEventInfo(e));
+  brushStore.actions.startBrush(getPointerEventInfo(e), $cameraStore);
 }
 
 const handlePointerMove = (e: PointerEvent) => {
-  brushStore.actions.updateBrush(getPointerEventInfo(e));
+  brushStore.actions.updateBrush(getPointerEventInfo(e), $cameraStore);
 }
 
 const handlePointerUp = (e: PointerEvent) => {
   canvasRef.releasePointerCapture(e.pointerId)
   brushStore.actions.doneBrush(getPointerEventInfo(e));
 }
-
-function setRef(ref: SVGSVGElement) {
-  canvasRef = ref;
-}
-
 </script>
 <MainSVG
-  forwardRef={setRef}
+  bind:forwardRef={canvasRef}
   on:wheel={handleWheel}
   on:pointerdown={handlePointerDown}
   on:pointermove={handlePointerMove}
