@@ -1,20 +1,21 @@
 <script lang="ts">
 import MainGroup from "./MainGroup.svelte";
 import MainSVG from "./MainSVG.svelte";
-import { store } from "./store";
+	import Page from "./Page.svelte";
+import { cameraStore } from "./writables/camera";
 
 function handleWheel(e: WheelEvent) {
   e.preventDefault()
 
   if (e.ctrlKey) {
-    store.actions.zoomCamera({
+    cameraStore.actions.zoomCamera({
       delta: e.deltaY,
       point: [e.pageX, e.pageY],
     });
     return
   }
 
-  store.actions.panCamera({
+  cameraStore.actions.panCamera({
     delta: [e.deltaX, e.deltaY],
     point: [e.pageX, e.pageY],
   });
@@ -23,8 +24,6 @@ function handleWheel(e: WheelEvent) {
 </script>
 <MainSVG on:wheel={handleWheel}>
   <MainGroup>
-    <circle cx={100} cy={100} r={50} />
-    <circle cx={500} cy={500} r={200} />
-    <circle cx={200} cy={800} r={100} />
+    <Page />
   </MainGroup>
 </MainSVG>

@@ -1,9 +1,9 @@
-import type { IData } from "../types"
+import type { Camera, Data } from "../types"
 import * as svg from "./svg"
 import * as vec from "./vec"
 
-export function screenToWorld(point: number[], data: IData) {
-  return vec.add(vec.div(point, data.camera.zoom), data.camera.point)
+export function screenToWorld(point: number[], camera: Camera) {
+  return vec.add(vec.div(point, camera.zoom), camera.point)
 }
 
 // A helper for getting tangents.

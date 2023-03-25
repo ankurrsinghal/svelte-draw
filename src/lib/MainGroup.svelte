@@ -1,8 +1,11 @@
 <script lang="ts">
-import { store } from "./store";
+import { cameraStore } from "./writables/camera";
 
-$: zoom = $store.camera.zoom
-$: point = $store.camera.point
+
+const camera = cameraStore;
+
+$: zoom = $camera.zoom
+$: point = $camera.point
 </script>
 
 <g transform="scale({zoom}) translate({point[0]} {point[1]})">
