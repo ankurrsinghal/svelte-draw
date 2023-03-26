@@ -78,16 +78,16 @@ type BaseShapeUtils<K extends ShapeType> = {
 const DotUtils: BaseShapeUtils<ShapeType.Dot> = {
   getBounds(shape) {
     const {
-      point: [cx, cy],
+      point: [x, y],
     } = shape
 
     return {
-      minX: cx,
-      maxX: cx + 4,
-      minY: cy,
-      maxY: cy + 4,
-      width: 4,
-      height: 4,
+      minX: x,
+      maxX: x + 8,
+      minY: y,
+      maxY: y + 8,
+      width: 8,
+      height: 8,
     }
   },
 
@@ -117,15 +117,15 @@ const DotUtils: BaseShapeUtils<ShapeType.Dot> = {
 const CircleUtils: BaseShapeUtils<ShapeType.Circle> = {
   getBounds(shape) {
     const {
-      point: [cx, cy],
+      point: [x, y],
       radius,
     } = shape
 
     return {
-      minX: cx,
-      maxX: cx + radius * 2,
-      minY: cy,
-      maxY: cy + radius * 2,
+      minX: x,
+      maxX: x + radius * 2,
+      minY: y,
+      maxY: y + radius * 2,
       width: radius * 2,
       height: radius * 2,
     }

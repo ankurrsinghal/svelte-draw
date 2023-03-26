@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Bounds from "./Bounds.svelte";
+	import BoundsBg from "./BoundsBG.svelte";
 import Brush from "./Brush.svelte";
 import MainGroup from "./MainGroup.svelte";
 import MainSVG from "./MainSVG.svelte";
@@ -49,7 +51,9 @@ const handlePointerUp = (e: PointerEvent) => {
   on:pointerup={handlePointerUp}
 >
   <MainGroup>
+    <BoundsBg />
     <Page />
+    <Bounds />
     <Brush />
   </MainGroup>
 </MainSVG>

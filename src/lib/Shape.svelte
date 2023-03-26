@@ -79,7 +79,7 @@
 .indicator {
   fill: none;
   stroke: transparent;
-  stroke-width: 2;
+  stroke-width: 1;
   pointer-events: none;
   stroke-linecap: round;
   stroke-linejoin: round;

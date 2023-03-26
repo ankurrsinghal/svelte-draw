@@ -916,3 +916,36 @@ export function getKeyboardEventInfo(e: KeyboardEvent) {
   const { shiftKey, ctrlKey, metaKey, altKey } = e
   return { key: e.key, shiftKey, ctrlKey, metaKey, altKey }
 }
+
+/**
+ * Get a bounding box that includes two bounding boxes.
+ * @param a Bounding box
+ * @param b Bounding box
+ * @returns
+ */
+export function getExpandedBounds(a: Bounds, b: Bounds) {
+  const minX = Math.min(a.minX, b.minX),
+    minY = Math.min(a.minY, b.minY),
+    maxX = Math.max(a.maxX, b.maxX),
+    maxY = Math.max(a.maxY, b.maxY),
+    width = Math.abs(maxX - minX),
+    height = Math.abs(maxY - minY)
+
+  return { minX, minY, maxX, maxY, width, height }
+}
+
+/**
+ * Get the common bounds of a group of bounds.
+ * @returns
+ */
+export function getCommonBounds(...b: Bounds[]) {
+  if (b.length < 2) return b[0]
+
+  let bounds = b[0]
+
+  for (let i = 1; i < b.length; i++) {
+    bounds = getExpandedBounds(bounds, b[i])
+  }
+
+  return bounds
+}

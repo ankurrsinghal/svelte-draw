@@ -3,12 +3,14 @@ import {ShapeType} from '$lib/types';
 import { intersectCircleBounds, intersectPolylineBounds } from "$lib/utils/intersections";
 import shapeUtils from "$lib/utils/shapes";
 import { derived, writable, type Readable } from "svelte/store";
-import { clamp, getBoundsFromPoints, screenToWorld, getPointerEventInfo, boundsContained, boundsCollide } from "../utils/utils";
+import { clamp, getBoundsFromPoints, screenToWorld, getPointerEventInfo, boundsContained, boundsCollide, getCommonBounds } from "../utils/utils";
 import * as vec from "../utils/vec";
+import { pageStore } from "./page";
 import { createStoreSelector } from "./utils";
 
 interface SelectionToolProps {
   bounds?: Bounds;
+  selectedBounds?: Bounds;
   selectedIds: Set<string>;
 }
 
@@ -136,3 +138,18 @@ function createBrushStore() {
   
 export const brushStore = createBrushStore();
 export const brushSeletor = createStoreSelector(brushStore);
+
+export const selectedBounds = derived([brushStore, pageStore], ([$brusStore, $pageStore]) => {
+  const ids = $brusStore.selectedIds;
+  const shapes = $pageStore.shapes;
+  if (ids.size === 0) return;
+
+  return getCommonBounds(
+    ...Array.from(ids)
+      .map((id) => {
+        const shape = shapes[id];
+        return shapeUtils[shape.type].getBounds(shape);
+      })
+      .filter(Boolean)
+  )
+});
