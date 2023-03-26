@@ -457,3 +457,21 @@ export function distanceToLineSegment(
 export function nudge(A: number[], B: number[], d: number) {
   return add(A, mul(uni(vec(A, B)), d))
 }
+
+/**
+ * Add scalar to vector.
+ * @param A
+ * @param B
+ */
+export function addScalar(A: number[], n: number) {
+  return [A[0] + n, A[1] + n]
+}
+
+/**
+ * Subtract scalar from vector.
+ * @param A
+ * @param B
+ */
+export function subScalar(A: number[], n: number) {
+  return [A[0] - n, A[1] - n]
+}

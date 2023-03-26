@@ -6,6 +6,7 @@ import Page from "./Page.svelte";
 import { getPointerEventInfo } from "./utils/utils";
 import { brushStore } from "./writables/brush";
 import { cameraStore } from "./writables/camera";
+	import { pageStore } from "./writables/page";
 
 let canvasRef: SVGSVGElement;
 
@@ -32,7 +33,7 @@ const handlePointerDown = (e: PointerEvent) => {
 }
 
 const handlePointerMove = (e: PointerEvent) => {
-  brushStore.actions.updateBrush(getPointerEventInfo(e), $cameraStore);
+  brushStore.actions.updateBrush(getPointerEventInfo(e), $cameraStore, $pageStore);
 }
 
 const handlePointerUp = (e: PointerEvent) => {

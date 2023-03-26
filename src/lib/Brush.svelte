@@ -1,13 +1,15 @@
 <script lang="ts">
-import { brushStore } from "./writables/brush";
+import { brushSeletor } from "./writables/brush";
+
+const bounds = brushSeletor(state => state.bounds);
 </script>
 
-{#if $brushStore}
+{#if $bounds}
 <rect
-  x={$brushStore.minX}
-  y={$brushStore.minY}
-  width={$brushStore.width}
-  height={$brushStore.height}
+  x={$bounds.minX}
+  y={$bounds.minY}
+  width={$bounds.width}
+  height={$bounds.height}
 />
 {/if}
 

@@ -7,7 +7,7 @@ const page: Page = {
   type: "page",
   name: "Page 0",
   childIndex: 0,
-  shapeIds: ['shape0', 'shape1', 'shape2'],
+  shapeIds: ['shape0', 'shape1', 'shape2', 'shape3'],
   shapes: {
     shape0: {
       id: "shape0",
@@ -18,6 +18,11 @@ const page: Page = {
       point: [100, 100],
       radius: 50,
       rotation: 0,
+      style: {
+        fill: "#aaa",
+        stroke: "#777",
+        strokeWidth: 1,
+      },
     },
     shape1: {
       id: "shape1",
@@ -28,16 +33,44 @@ const page: Page = {
       point: [300, 300],
       size: [200, 200],
       rotation: 0,
+      style: {
+        fill: "#aaa",
+        stroke: "#777",
+        strokeWidth: 1,
+      },
     },
     shape2: {
       id: "shape2",
-      type: ShapeType.Circle,
+      type: ShapeType.Polyline,
       name: "Shape 2",
       parentId: "page0",
       childIndex: 2,
-      point: [200, 800],
-      radius: 25,
+      point: [200, 600],
+      points: [
+        [0, 0],
+        [75, 200],
+        [100, 50],
+      ],
       rotation: 0,
+      style: {
+        fill: "none",
+        stroke: "#777",
+        strokeWidth: 2,
+      },
+    },
+    shape3: {
+      id: "shape3",
+      type: ShapeType.Dot,
+      name: "Shape 3",
+      parentId: "page0",
+      childIndex: 3,
+      point: [500, 100],
+      rotation: 0,
+      style: {
+        fill: "#aaa",
+        stroke: "#777",
+        strokeWidth: 1,
+      },
     },
   },
 }

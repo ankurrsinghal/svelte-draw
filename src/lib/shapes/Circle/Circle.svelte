@@ -1,7 +1,12 @@
 <script lang="ts">
   import type { CircleShape } from "$lib/types";
   export let props: CircleShape;
-  const { point, radius } = props;
+  const { id, point, radius } = props;
 </script>
   
-<circle cx={point[0]} cy={point[1]} r={radius} fill="black" />
+<circle
+  id={id}
+  cx={radius}
+  cy={radius}
+  r={radius}
+/>
